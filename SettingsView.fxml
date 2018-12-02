@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SettingsViewController">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0">
+         <top>
+            <AnchorPane prefHeight="91.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="57.0" layoutY="18.0" text="Settings">
+                     <font>
+                        <Font size="44.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </top>
+         <left>
+            <AnchorPane prefHeight="309.0" prefWidth="164.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="86.0" layoutY="7.0" prefHeight="60.0" prefWidth="64.0" text="Hide:">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <CheckBox fx:id="ageCheckbox" layoutX="38.0" layoutY="28.0" mnemonicParsing="false" onAction="#ageCheckboxPressed" text="Age">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="statusCheckbox" layoutX="38.0" layoutY="76.0" mnemonicParsing="false" onAction="#statusCheckboxPressed" prefHeight="24.0" prefWidth="108.0" text="Status">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="friendsCheckbox" layoutX="38.0" layoutY="126.0" mnemonicParsing="false" onAction="#friendsCheckboxPressed" text="Friends">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="postCheckbox" layoutX="38.0" layoutY="179.0" mnemonicParsing="false" onAction="#postCheckboxPressed" text="Posts">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </CheckBox>
+                  <Button fx:id="submitButton" layoutX="32.0" layoutY="238.0" mnemonicParsing="false" onAction="#submitButtonPressed" prefHeight="43.0" prefWidth="90.0" text="Submit">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
