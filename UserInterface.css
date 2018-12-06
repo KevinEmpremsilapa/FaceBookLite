@@ -1,0 +1,99 @@
+
+#rootPane{
+    /* Gradient BG */
+    -fx-background-color: linear-gradient(to top left, #8B9DC3, #3b5998);
+}
+
+#loginButton{
+    -jfx-button-type: FLAT;
+    -fx-background-color: white;
+    -fx-text-fill: #3b5998;
+}
+#registerButton{
+    -jfx-button-type: FLAT;
+    -fx-background-color: white;
+    -fx-text-fill: #3b5998;
+    -fx-font-family: 'Roboto';
+
+
+}
+@font-face {
+    src: url('styles/Font/Roboto-Bold.ttf');
+}
+
+
+#resetPasswordButton{
+    -jfx-button-type: FLAT;
+    -fx-background-color: white;
+    -fx-text-fill: #3b5998;
+    -fx-font-family: 'Roboto-Regular';
+}
+
+.whiteButton{
+    -jfx-button-type: FLAT;
+    -fx-background-color: white;
+    -fx-text-fill: #3b5998;
+    -fx-font-family: Helvetica;
+}
+
+.smallWhiteButton{
+    -jfx-button-type: FLAT;
+    -fx-background-color: white;
+    -fx-text-fill: #3b5998;
+    -fx-font-family: Helvetica;
+    -fx-font-size: 10px;
+}
+
+.darkBlueButton{
+    -jfx-button-type: FLAT;
+    -fx-background-color: #3b5998;
+    -fx-text-fill: white;
+    -fx-font-family: Helvetica;
+    -fx-font-size: 10px;
+}
+
+.bigDarkBlueButton{
+    -jfx-button-type: FLAT;
+    -fx-background-color: #3b5998;
+    -fx-text-fill: white;
+    -fx-font-family: Helvetica;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.smallWhiteFont{
+    -fx-font-family: 'Helvetica';
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.boldDarkFont{
+    -fx-font-family: Helvetica;
+    -fx-font-weight: bold;
+    -fx-text-fill: 	#3b5998;
+    -fx-font-size: 14px;
+}
+
+.titleFontBlue{
+    -fx-font-family: Helvetica;
+    -fx-font-weight: bold;
+    -fx-text-fill: 	#3b5998;
+    -fx-font-size: 18px;
+}
+
+.titleFontWhite{
+    -fx-font-family: Helvetica;
+    -fx-font-weight: bold;
+    -fx-text-fill: 	#ffffff;
+    -fx-font-size: 18px;
+}
+
+
+/*
+Facebook Colors:
+    Dark Blue: 	#3b5998
+    Medium Blue: #8b9dc3
+    Light Blue: #dfe3ee
+    Light Grey: #f7f7f7
+    White: #ffffff
+ */
