@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RegisterViewController">
+   <children>
+      <Button fx:id="submitButton" alignment="CENTER" layoutX="272.0" layoutY="321.0" mnemonicParsing="false" onAction="#submitButtonPressed" styleClass="bigDarkBlueButton" stylesheets="@UserInterface.css" text="Submit" />
+      <TextField fx:id="firstName" layoutX="180.0" layoutY="103.0" prefHeight="27.0" prefWidth="260.0" promptText="First Name" stylesheets="@UserInterface.css" />
+      <TextField fx:id="lastName" layoutX="180.0" layoutY="145.0" prefHeight="27.0" prefWidth="260.0" promptText="Last Name" stylesheets="@UserInterface.css" />
+      <TextField fx:id="userName" layoutX="180.0" layoutY="236.0" prefHeight="27.0" prefWidth="260.0" promptText="Username" stylesheets="@UserInterface.css" />
+      <PasswordField fx:id="passwordInput" layoutX="180.0" layoutY="277.0" prefHeight="27.0" prefWidth="260.0" promptText="Password" stylesheets="@UserInterface.css" />
+      <TextField fx:id="ageInput" layoutX="180.0" layoutY="189.0" prefHeight="27.0" prefWidth="260.0" promptText="Age" stylesheets="@UserInterface.css" />
+      <Rectangle fill="#3b5998" height="42.0" layoutX="-1.0" layoutY="-1.0" smooth="false" strokeType="INSIDE" strokeWidth="0.0" width="605.0">
+         <stroke>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Rectangle>
+      <Button fx:id="backRegisterLoginButton" layoutX="22.0" layoutY="11.0" mnemonicParsing="false" styleClass="smallWhiteButton" stylesheets="@UserInterface.css" text="&lt; Back" />
+      <Label layoutX="266.0" layoutY="12.0" stylesheets="@UserInterface.css" text="Register">
+         <styleClass>
+            <String fx:value="smallWhiteFont" />
+            <String fx:value="titleFontWhite" />
+         </styleClass></Label>
+   </children>
+</AnchorPane>
+
+
+<!--
+
+//Original Code:
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RegisterViewController">
    <children>
@@ -49,4 +81,4 @@
       </VBox>
       <Button fx:id="submitButton" layoutX="161.0" layoutY="260.0" mnemonicParsing="false" onAction="#submitButtonPressed" prefHeight="59.0" prefWidth="151.0" text="Submit" />
    </children>
-</AnchorPane>
+</AnchorPane> -->
