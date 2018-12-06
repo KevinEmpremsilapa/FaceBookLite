@@ -35,6 +35,10 @@ public class RegisterViewController {
     @FXML
     private TextField ageInput;
 
+    // ADDED
+    @FXML
+    private Button backRegisterLoginButton;
+
     @FXML
     void submitButtonPressed(ActionEvent event) throws IOException {
         firstNameInput = firstName.getText();
