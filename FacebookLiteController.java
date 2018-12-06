@@ -15,30 +15,21 @@ public class FacebookLiteController {
     String password;
 
     @FXML
-    private TextField userNameField;
+    private TextField usernameTextField;
 
     @FXML
-    private Label loginErrorlabel;
+    private Label loginErrorLabel;
 
     @FXML
     private Button resetPasswordButton;
-
     @FXML
     private Button registerButton;
-
-    @FXML
-    private AnchorPane rootPane;
-
     @FXML
     private Button loginButton;
 
     @FXML
     private PasswordField passwordField;
 
-
-    public void initialize() throws IOException {
-            //TODO: Left this function here if needed
-    }
 
     @FXML
     void registerButtonPressed(ActionEvent event) throws IOException {
@@ -52,12 +43,13 @@ public class FacebookLiteController {
 
         System.out.print("Register Button Pressed\n");
     }
+
     @FXML
     void loginButtonPressed(ActionEvent event) throws IOException {
 
         //TODO: Set Visible to true if user enters wrong username/password
         //loginErrorlabel.setVisible(true);
-
+        /*
         if(!userNameField.getText().equals("")){
             username = userNameField.getText();
         }
@@ -67,7 +59,7 @@ public class FacebookLiteController {
 
         System.out.println(username);
         System.out.println(password);
-
+        */
         Stage stage;
         Parent root;
         stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();
@@ -81,7 +73,13 @@ public class FacebookLiteController {
 
     @FXML
     void resetPasswordButtonPressed(ActionEvent event) throws IOException{
-        //TODO: Move to reset password screen on press
+        Stage stage;
+        Parent root;
+        stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("ResetPasswordView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.print("Reset Password Button Pressed\n");
 
     }

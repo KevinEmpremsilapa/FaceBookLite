@@ -25,7 +25,7 @@
             </LinearGradient>
          </stroke>
       </Rectangle>
-      <Button fx:id="backRegisterLoginButton" layoutX="22.0" layoutY="11.0" mnemonicParsing="false" styleClass="smallWhiteButton" stylesheets="@UserInterface.css" text="&lt; Back" />
+      <Button fx:id="backRegisterLoginButton" layoutX="22.0" layoutY="11.0" mnemonicParsing="false" styleClass="smallWhiteButton" onAction="#backRegisterLoginButtonPressed" stylesheets="@UserInterface.css" text="&lt; Back" />
       <Label layoutX="266.0" layoutY="12.0" stylesheets="@UserInterface.css" text="Register">
          <styleClass>
             <String fx:value="smallWhiteFont" />

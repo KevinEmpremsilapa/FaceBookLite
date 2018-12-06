@@ -19,25 +19,24 @@ public class RegisterViewController {
 
     @FXML
     private TextField firstName;
-
     @FXML
     private TextField lastName;
+    @FXML
+    private TextField userName;
+    @FXML
+    private TextField ageInput;
+
 
     @FXML
     private Button submitButton;
-
+    // ADDED
     @FXML
-    private TextField userName;
+    private Button backRegisterLoginButton;
 
     @FXML
     private PasswordField passwordInput;
 
-    @FXML
-    private TextField ageInput;
 
-    // ADDED
-    @FXML
-    private Button backRegisterLoginButton;
 
     @FXML
     void submitButtonPressed(ActionEvent event) throws IOException {
@@ -58,6 +57,20 @@ public class RegisterViewController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        System.out.println("Submit Button Pressed\n");
+    }
+
+    @FXML
+    void backRegisterLoginButtonPressed(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root;
+        stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("FacebookLiteView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Back Button Pressed\n");
     }
 
 }
