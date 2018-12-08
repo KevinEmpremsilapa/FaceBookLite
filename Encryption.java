@@ -15,6 +15,7 @@ import java.security.InvalidAlgorithmParameterException;
 
 //import sun.misc.BASE64Encoder;
 import java.util.Base64;
+import javax.crypto.spec.SecretKeySpec;
 import static java.lang.System.out;
 
 public class Encryption {
@@ -139,8 +140,18 @@ public class Encryption {
         }
     }
 
-    public SecretKey getKey()
+    public String getKey()
     {
-        return secretKey;
+        String keyString = Base64.getEncoder().encodeToString(secretKey.getEncoded());
+        return keyString;
     }
+
+    //rebuilds our secretKey from string
+    public SecretKey convertKey(String key)
+    {
+        byte[] rebuiltKey = Base64.getDecoder().decode(key);
+        SecretKey skey = new SecretKeySpec(rebuiltKey, 0, rebuiltKey.length, "DES");
+        return skey;
+    }
+
 }
