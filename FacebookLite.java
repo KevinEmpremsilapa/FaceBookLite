@@ -26,32 +26,13 @@ import javafx.stage.Window;
 
 public class FacebookLite extends Application
 {
-
-
     private Profile[] profiles;
     private int index;
     private int nop; // number of profiles
+    public static Person currentUser;
 
     public FacebookLite()
     {
-
-        MongoClientURI uri = new MongoClientURI(
-                "mongodb://Alex:PASSWORD123@comp585-shard-00-00-cpnmd.gcp.mongodb.net:27017,comp585-shard-00-01-cpnmd.gcp.mongodb.net:27017,comp585-shard-00-02-cpnmd.gcp.mongodb.net:27017/test?ssl=true&replicaSet=COMP585-shard-0&authSource=admin&retryWrites=true");
-        MongoClient mongoClient = new MongoClient(uri);
-        //TODO: Change "mydb" to something else
-        DB db2 = mongoClient.getDB( "mydb" );
-
-        //Change "testColle" to anything if you want
-        DBCollection coll = db2.getCollection("testColle");
-        BasicDBObject doc = new BasicDBObject("name", "MongoDB")
-                .append("type", "database")
-                .append("count", 1)
-                .append("info", new BasicDBObject("x", 203).append("y", 102));
-        coll.insert(doc);
-
-        //This will show all the names of the databases, you should see the database you added from the TODO line
-        mongoClient.getDatabaseNames().forEach(System.out::println);
-
         profiles = new Profile[10];
         index = -1;
         nop = 0;
@@ -722,6 +703,7 @@ public class FacebookLite extends Application
         
         keyboard.close();
 */
+        DBUtil.connectDatabase();
         launch(args);
         
     }

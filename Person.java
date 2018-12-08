@@ -3,6 +3,9 @@ public abstract class Person
     private String firstName;
     private String lastName;
     private int age;
+    private String username;
+    private String password;
+    private String email;
     
     public Person()
     {
@@ -17,7 +20,17 @@ public abstract class Person
         this.lastName = lastName;
         this.age = age;
     }
-    
+
+    public Person(String firstName , String lastName , int age, String username, String password, String email)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
     // getters
     public String getFirstName()
     {
@@ -32,6 +45,17 @@ public abstract class Person
     public int getAge()
     {
         return age;
+    }
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
     }
     
     // setters
@@ -48,6 +72,16 @@ public abstract class Person
     public void setAge(int age)
     {
         this.age = age;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }

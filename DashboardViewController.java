@@ -12,12 +12,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
-
-
 /*
     TODO: Object type for User Avatar? Then initialize
  */
-
 public class DashboardViewController {
 
 
@@ -51,8 +48,11 @@ public class DashboardViewController {
     @FXML
     private ImageView userIconImg = new ImageView("Images/defaultUserIcon.png");
 
-
-
+    public void initialize() throws IOException {
+        firstNameLabel.setText(FacebookLite.currentUser.getFirstName());
+        lastNameLabel.setText(FacebookLite.currentUser.getLastName());
+        ageLabel.setText(String.valueOf(FacebookLite.currentUser.getAge()));
+    }
 
     @FXML
     void settingsButtonPressed(ActionEvent event) throws IOException {

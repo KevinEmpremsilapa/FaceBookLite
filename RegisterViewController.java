@@ -40,10 +40,21 @@ public class RegisterViewController {
 
     @FXML
     void submitButtonPressed(ActionEvent event) throws IOException {
-        firstNameInput = firstName.getText();
-        lastNameInput = lastName.getText();
-        passwordUserInput = passwordInput.getText();
-        ageUserInput = Integer.valueOf(ageInput.getText());
+
+        //Error Checking
+
+        Person person = new PersonDAO();
+        person.setFirstName(firstName.getText());
+        person.setLastName(lastName.getText());
+        person.setAge(Integer.parseInt(ageInput.getText()));
+        person.setUsername(userName.getText());
+        //Encrypt here
+        person.setPassword(passwordInput.getText());
+        //Need email
+        person.setEmail("@");
+
+        DBUtil.registerUser(person);
+        FacebookLite.currentUser = person;
 
         System.out.println("First Name: " + firstNameInput);
         System.out.println("Last Name: " + lastNameInput);

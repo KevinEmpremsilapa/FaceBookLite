@@ -13,7 +13,7 @@ import java.security.InvalidKeyException;
 import javax.crypto.IllegalBlockSizeException;
 import java.security.InvalidAlgorithmParameterException;
 
-import sun.misc.BASE64Encoder;
+//import sun.misc.BASE64Encoder;
 
 import static java.lang.System.out;
 
@@ -48,7 +48,7 @@ public class Encryption {
 
             //=================encrypts our byte data================
             byteCipher = cipher.doFinal(byteDataToEncrypt);
-            strCipher = new BASE64Encoder().encode(byteCipher);
+            //strCipher = new BASE64Encoder().encode(byteCipher);
             out.println("encrypted text is " + strCipher);
 
         }
