@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="addFriendsController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3b5998" height="129.0" layoutX="-33.0" layoutY="-61.0" stroke="BLACK" strokeType="INSIDE" width="654.0" />
+      <ScrollPane layoutX="68.0" layoutY="120.0" prefHeight="200.0" prefWidth="425.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="410.0">
+               <children>
+                  <ListView fx:id="addFriendsListView" layoutY="1.0" prefHeight="264.0" prefWidth="410.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <TextField fx:id="searchBarTextField" layoutX="68.0" layoutY="95.0" prefHeight="25.0" prefWidth="425.0" promptText="Search " />
+      <Button fx:id="addFriendsButton" layoutX="442.0" layoutY="323.0" mnemonicParsing="false" onAction="#addFriendsButtonPressed" prefHeight="25.0" prefWidth="53.0" styleClass="bigDarkBlueButton" stylesheets="@UserInterface.css" text="Add" />
+      <Button fx:id="backButton" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#backButtonPressed" stylesheets="@UserInterface.css" text="Back" />
+      <Label layoutX="223.0" layoutY="22.0" prefHeight="27.0" prefWidth="115.0" styleClass="titleFontWhite" stylesheets="@UserInterface.css" text="Add Friends" />
+   </children>
+</AnchorPane>

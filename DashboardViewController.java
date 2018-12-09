@@ -8,20 +8,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
+
+
 /*
     TODO: Object type for User Avatar? Then initialize
  */
+
 public class DashboardViewController {
-
-
-    @FXML
-    private Label firstNameLabel;
-    @FXML
-    private Label lastNameLabel;
 
 
     @FXML
@@ -31,27 +29,43 @@ public class DashboardViewController {
     @FXML
     private Button addPost;
     @FXML
-    private Button deleteFriends;
-    @FXML
-    private Button deletePost;
-    // User profile photo is a button class
-    // Click the button to change the photo
-    @FXML
-    private Button userIconButton;
+    private Button friendsDeleteButton;
     @FXML
     private Button logoutButton;
+    @FXML
+    private Button postsDeleteButton;
 
-    // Just ADDED
     @FXML
     private Label ageLabel;
+    @FXML
+    private Label firstNameLabel;
+    @FXML
+    private Label lastNameLabel;
+
+    @FXML
+    private ListView friendsListView;
+    @FXML
+    private ListView postsListView;
+
+
+
 
     @FXML
     private ImageView userIconImg = new ImageView("Images/defaultUserIcon.png");
+    @FXML
+    private ImageView userImg;
 
-    public void initialize() throws IOException {
-        firstNameLabel.setText(FacebookLite.currentUser.getFirstName());
-        lastNameLabel.setText(FacebookLite.currentUser.getLastName());
-        ageLabel.setText(String.valueOf(FacebookLite.currentUser.getAge()));
+
+
+    @FXML
+    void friendIconButtonPressed(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root;
+        stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("FriendProfileView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -63,8 +77,6 @@ public class DashboardViewController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-        System.out.print("Settings Button Pressed\n");
     }
 
     @FXML
@@ -90,12 +102,19 @@ public class DashboardViewController {
         userIconImg.setFitHeight(50);
         userIconImg.setFitWidth(50);
         userIconButton.setGraphic(userIconImg);
-
-        System.out.print("UserIcon Button Pressed\n");
     }
 
     @FXML
     void editFriendsButtonPressed(ActionEvent event) throws IOException {
+
+        Stage stage;
+        Parent root;
+        stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("addFriendsView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
         System.out.println("Edit Friends");
     }
 
@@ -107,6 +126,15 @@ public class DashboardViewController {
 
     @FXML
     void addPostButtonPressed(ActionEvent event) throws IOException{
+
+        Stage stage;
+        Parent root;
+        stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("addPostView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
         System.out.println("Add Post");
 
     }
@@ -125,7 +153,8 @@ public class DashboardViewController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        System.out.print("Logout Button Pressed\n");
+
+        System.out.println("Logout Button pressed");
     }
 
 }

@@ -1,58 +1,50 @@
-import javafx.event.ActionEvent;
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
-public class ResetPasswordController {
+public class addFriendsController {
 
     @FXML
     private Button backButton;
     @FXML
-    private Button resetPasswordButton;
+    private Button addFriendsButton;
 
     @FXML
-    private TextField emailTextField;
+    private ListView addFriendsListView;
 
     @FXML
-    private PasswordField newPasswordField;
-    @FXML
-    private PasswordField confirmPasswordField;
-
+    private TextField searchBarTextField;
 
     @FXML
-    private void backButtonPressed(ActionEvent event) throws IOException{
+    void backButtonPressed(ActionEvent event) throws IOException {
         Stage stage;
         Parent root;
         stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("FaceBookLiteView.fxml"));
+        root = FXMLLoader.load(getClass().getResource("DashboardView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-        System.out.println("Back Button Pressed\n");
+        System.out.print("Back Button Pressed\n");
     }
-    @FXML
-    private void resetPasswordButtonPressed(ActionEvent event) throws IOException{
-        //TODO: Save the new password to database
 
+    @FXML
+    void addFriendsButtonPressed(ActionEvent event) throws IOException {
+
+        //TODO: Save friend to database
         Stage stage;
         Parent root;
         stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("FaceBookLiteView.fxml"));
+        root = FXMLLoader.load(getClass().getResource("DashboardView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        System.out.println("Reset Button Pressed\n");
-
+        System.out.println("Add Friends Button Pressed");
     }
-
-
-
 }

@@ -40,31 +40,17 @@ public class RegisterViewController {
 
     @FXML
     void submitButtonPressed(ActionEvent event) throws IOException {
-
-        //Error Checking
-
-        Person person = new PersonDAO();
-        person.setFirstName(firstName.getText());
-        person.setLastName(lastName.getText());
-        person.setAge(Integer.parseInt(ageInput.getText()));
-        person.setUsername(userName.getText());
-        //Encrypt here
-        //Encryption.encrypt(passwordInput.getText());
-        //Encryption encryption = new Encryption();
-        //person.setPassword(encryption.encrypt(passwordInput.getText()));
-        AES.encrypt(passwordInput.getText(), userName.getText());
-        person.setPassword(new Password(AES.encrypt(passwordInput.getText(), userName.getText()), userName.getText()));
-        //Need email
-        person.setEmail("@");
-
-        DBUtil.registerUser(person);
-        FacebookLite.currentUser = person;
+        /*
+        firstNameInput = firstName.getText();
+        lastNameInput = lastName.getText();
+        passwordUserInput = passwordInput.getText();
+        ageUserInput = Integer.valueOf(ageInput.getText());
 
         System.out.println("First Name: " + firstNameInput);
         System.out.println("Last Name: " + lastNameInput);
         System.out.println("Password: " + passwordUserInput);
         System.out.println("Age: " + ageUserInput);
-
+    */
         Stage stage;
         Parent root;
         stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();

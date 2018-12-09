@@ -47,35 +47,28 @@ public class FacebookLiteController {
     @FXML
     void loginButtonPressed(ActionEvent event) throws IOException {
 
-        if (!usernameTextField.getText().equals("") || !passwordField.getText().equals("")) {
-
-            Person user = DBUtil.loginUser(usernameTextField.getText(), passwordField.getText());
-
-            if (user != null) {
-                //Login successful
-                FacebookLite.currentUser = user;
-                System.out.println("Login Successful");
-
-                Stage stage;
-                Parent root;
-                stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("DashboardView.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-
-                System.out.print("Login Button Pressed\n");
-            }
-
-            //TODO: Set Visible to true if user enters wrong username/password
-            //
-            else {
-                //loginErrorlabel.setVisible(true);
-                System.out.println("Login failed");
-            }
+        //TODO: Set Visible to true if user enters wrong username/password
+        //loginErrorlabel.setVisible(true);
+        /*
+        if(!userNameField.getText().equals("")){
+            username = userNameField.getText();
         }
-        //System.out.println(username);
-        //System.out.println(password);
+        if(!passwordField.getText().equals("")){
+            password = passwordField.getText();
+        }
+
+        System.out.println(username);
+        System.out.println(password);
+        */
+        Stage stage;
+        Parent root;
+        stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("DashboardView.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+        System.out.print("Login Button Pressed\n");
     }
 
     @FXML
