@@ -49,7 +49,11 @@ public class RegisterViewController {
         person.setAge(Integer.parseInt(ageInput.getText()));
         person.setUsername(userName.getText());
         //Encrypt here
-        person.setPassword(passwordInput.getText());
+        //Encryption.encrypt(passwordInput.getText());
+        //Encryption encryption = new Encryption();
+        //person.setPassword(encryption.encrypt(passwordInput.getText()));
+        AES.encrypt(passwordInput.getText(), userName.getText());
+        person.setPassword(new Password(AES.encrypt(passwordInput.getText(), userName.getText()), userName.getText()));
         //Need email
         person.setEmail("@");
 

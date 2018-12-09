@@ -56,7 +56,7 @@ public class DBUtil
         document.put("lastName", person.getLastName());
         document.put("age", person.getAge());
         document.put("username", person.getUsername());
-        document.put("password", person.getPassword());
+        document.put("password", new BasicDBObject("enc", person.getPassword().getEncrypted()).append("key", person.getPassword().getKey()));
         document.put("email", person.getEmail());
         collection.insert(document);
 
@@ -69,14 +69,22 @@ public class DBUtil
 
         BasicDBObject searchQuery = new BasicDBObject();
         searchQuery.put("username", username);
-        searchQuery.put("password", password);
 
         DBCursor cursor = collection.find(searchQuery);
         if(cursor.hasNext()) {
             DBObject db = cursor.next();
-            ObjectId id = (ObjectId) db.get("_id");
-            //System.out.println("Login   " + id);
-            return profileInfo(id);
+            DBObject db2 = (DBObject) db.get("password");
+            System.out.println("password " + db.get("password"));
+            System.out.println("input: " + db2.get("enc") + " hidden: " +  db2.get("key"));
+
+            if(AES.decrypt(db2.get("enc").toString(), db2.get("key").toString()).equals(password))
+            {
+                ObjectId id = (ObjectId) db.get("_id");
+                System.out.println("Login Success");
+                return profileInfo(id);
+            }
+            else
+                return null;
         }
 
         else
@@ -104,15 +112,30 @@ public class DBUtil
         return person;
     }
 
-    public static void updatePassword(String oldPassword, String newPassword)
+    public static void updatePassword(String email, String newPassword)
     {
         collection = database.getCollection("Users");
         BasicDBObject newDocument = new BasicDBObject();
-        newDocument.append("$set", new BasicDBObject().append("password", newPassword));
+        newDocument.append("$set", new BasicDBObject().append("password", new BasicDBObject()
+                .append("enc", newPassword).append("key", email)));
 
-        BasicDBObject searchQuery = new BasicDBObject().append("password", oldPassword);
+        BasicDBObject searchQuery = new BasicDBObject().append("email", email);
 
         collection.update(searchQuery, newDocument);
+    }
+
+    public static boolean searchField(String field, String find)
+    {
+        collection = database.getCollection("Users");
+        BasicDBObject searchQuery = new BasicDBObject();
+        searchQuery.put(field, find);
+
+        DBCursor cursor = collection.find(searchQuery);
+        if(cursor.hasNext()) {
+            return true;
+        }
+        else
+            return false;
     }
 
     public static void printAllFriends(String uid)

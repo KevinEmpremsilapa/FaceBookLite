@@ -4,7 +4,7 @@ public class PersonDAO extends Person
     private String lastName;
     private int age;
     private String username;
-    private String password;
+    private Password password;
     private String email;
 
     public PersonDAO()
@@ -17,7 +17,7 @@ public class PersonDAO extends Person
         super(firstName, lastName, age);
     }
 
-    public PersonDAO(String firstName , String lastName , int age, String username, String password, String email)
+    public PersonDAO(String firstName , String lastName , int age, String username, Password password, String email)
     {
         super(firstName, lastName, age, username, password, email);
     }
@@ -41,7 +41,7 @@ public class PersonDAO extends Person
         return username;
     }
 
-    public String getPassword() {
+    public Password getPassword() {
         return password;
     }
 
@@ -68,7 +68,7 @@ public class PersonDAO extends Person
     public void setUsername(String username) {
         this.username = username;
     }
-    public void setPassword(String password) {
+    public void setPassword(Password password) {
         this.password = password;
     }
     public void setEmail(String email) {

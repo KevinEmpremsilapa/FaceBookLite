@@ -4,7 +4,7 @@ public abstract class Person
     private String lastName;
     private int age;
     private String username;
-    private String password;
+    private Password password;
     private String email;
     
     public Person()
@@ -21,7 +21,7 @@ public abstract class Person
         this.age = age;
     }
 
-    public Person(String firstName , String lastName , int age, String username, String password, String email)
+    public Person(String firstName , String lastName , int age, String username, Password password, String email)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -50,7 +50,7 @@ public abstract class Person
         return username;
     }
 
-    public String getPassword() {
+    public Password getPassword() {
         return password;
     }
 
@@ -77,7 +77,7 @@ public abstract class Person
     public void setUsername(String username) {
         this.username = username;
     }
-    public void setPassword(String password) {
+    public void setPassword(Password password) {
         this.password = password;
     }
     public void setEmail(String email) {

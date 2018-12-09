@@ -1,4 +1,6 @@
 import javafx.event.ActionEvent;
+
+import java.awt.*;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,14 +44,29 @@ public class ResetPasswordController {
     private void resetPasswordButtonPressed(ActionEvent event) throws IOException{
         //TODO: Save the new password to database
 
-        Stage stage;
-        Parent root;
-        stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("FaceBookLiteView.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Reset Button Pressed\n");
+        if(newPasswordField.getText().equals(confirmPasswordField.getText()))
+        {
+            if(DBUtil.searchField("email", emailTextField.getText())) {
+
+                DBUtil.updatePassword(emailTextField.getText(), AES.encrypt(newPasswordField.getText(), emailTextField.getText()));
+
+                Stage stage;
+
+                Parent root;
+                stage = (Stage) ((Button) (event.getSource())).getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("FaceBookLiteView.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                System.out.println("Reset Button Pressed\n");
+            }
+            else
+                System.out.println("No email found");
+        }
+
+        else
+            System.out.println("Passwords don't match");
+
 
     }
 
