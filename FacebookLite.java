@@ -23,6 +23,8 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import javax.crypto.SecretKey;
+
 
 public class FacebookLite extends Application
 {
@@ -30,6 +32,7 @@ public class FacebookLite extends Application
     private int index;
     private int nop; // number of profiles
     public static Person currentUser;
+    public static Person friendProfile;
 
     public FacebookLite()
     {

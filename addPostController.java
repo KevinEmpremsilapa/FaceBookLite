@@ -22,6 +22,7 @@ public class addPostController {
     @FXML
     void postButtonPressed(ActionEvent event) throws IOException {
         //TODO:Add posts to database
+        DBUtil.addPost(FacebookLite.currentUser, new Post(postTextArea.getText()));
         //postTextArea.getText();
 
 

@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 
 public class SettingsViewController {
 
-    boolean hideAge, hideFirstName, hideLastName, hidePhone, hideEmail, hideStatus;
+    boolean hideAge, hideFirstName, hideLastName, hideFriends, hidePosts, hideStatus;
 
     @FXML
     private CheckBox statusCheckBox;
@@ -22,9 +22,9 @@ public class SettingsViewController {
     @FXML
     private CheckBox ageCheckBox;
     @FXML
-    private CheckBox phoneCheckBox;
+    private CheckBox friendsCheckBox;
     @FXML
-    private CheckBox emailCheckBox;
+    private CheckBox postsCheckBox;
 
     @FXML
     private Button saveButton;
@@ -42,6 +42,8 @@ public class SettingsViewController {
     private TextField phoneTextField;
     @FXML
     private TextField emailTextField;
+    @FXML
+    private TextField statusTextField;
 
 
     @FXML
@@ -67,14 +69,14 @@ public class SettingsViewController {
         }
     }
     @FXML
-    void emailCheckboxPressed() {
-        if(emailCheckBox.isSelected()){
+    void postsCheckboxPressed() {
+        if(postsCheckBox.isSelected()){
             System.out.println("Email Checked");
-            hideEmail = true;
+            hidePosts = true;
         }
         else{
             System.out.println("Email UnChecked");
-            hideEmail = false;
+            hidePosts = false;
         }
     }
     @FXML
@@ -100,14 +102,14 @@ public class SettingsViewController {
         }
     }
     @FXML
-    void phoneCheckboxPressed() {
-        if(phoneCheckBox.isSelected()){
+    void friendsCheckboxPressed() {
+        if(friendsCheckBox.isSelected()){
             System.out.println("Phone Checked");
-            hidePhone = true;
+            hideFriends = true;
         }
         else{
             System.out.println("Phone UnChecked");
-            hidePhone = false;
+            hideFriends = false;
         }
     }
 
@@ -115,6 +117,21 @@ public class SettingsViewController {
     void saveButtonPressed(ActionEvent event) throws IOException {
 
         //TODO: Save values to database
+        //Age
+        FacebookLite.currentUser.setAge(Integer.parseInt(ageTextField.getText()));
+        DBUtil.updateField(FacebookLite.currentUser, "age", ageTextField.getText());
+        //Status
+        FacebookLite.currentUser.setStatus(statusTextField.getText());
+        DBUtil.updateField(FacebookLite.currentUser, "status", statusTextField.getText());
+        //Hide stuff
+        FacebookLite.currentUser.setHideAge(ageCheckBox.isSelected());
+        FacebookLite.currentUser.setHideFriends(friendsCheckBox.isSelected());
+        FacebookLite.currentUser.setHidePosts(postsCheckBox.isSelected());
+        FacebookLite.currentUser.setHideStatus(statusCheckBox.isSelected());
+        DBUtil.updateField(FacebookLite.currentUser,"hidden", "hideAge", String.valueOf(hideAge));
+        //DBUtil.updateField(FacebookLite.currentUser,"hidden", "hideStatus", String.valueOf(hideStatus));
+        //DBUtil.updateField(FacebookLite.currentUser,"hidden","hidePosts", String.valueOf(hidePosts));
+        //DBUtil.updateField(FacebookLite.currentUser,"hidden","hideFriends", String.valueOf(hideFriends));
 
         Stage stage;
         Parent root;
@@ -137,6 +154,17 @@ public class SettingsViewController {
         stage.show();
 
         System.out.println("Cancel Button Pressed\n");
+    }
+
+    public void initialize()
+    {
+        ageCheckBox.setSelected(FacebookLite.currentUser.isHideAge());
+        statusCheckBox.setSelected(FacebookLite.currentUser.isHideStatus());
+        postsCheckBox.setSelected(FacebookLite.currentUser.isHidePosts());
+        friendsCheckBox.setSelected(FacebookLite.currentUser.isHideFriends());
+
+        ageTextField.setText(String.valueOf(FacebookLite.currentUser.getAge()));
+        statusTextField.setText(FacebookLite.currentUser.getStatus());
     }
 
 }

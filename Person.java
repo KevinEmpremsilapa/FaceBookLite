@@ -6,6 +6,11 @@ public abstract class Person
     private String username;
     private Password password;
     private String email;
+    private String status;
+    private boolean hideFriends;
+    private boolean hidePosts;
+    private boolean hideAge;
+    private boolean hideStatus;
     
     public Person()
     {
@@ -57,7 +62,16 @@ public abstract class Person
     public String getEmail() {
         return email;
     }
-    
+    public String getStatus()
+    {
+        return status;
+    }
+
+    public String getFullName()
+    {
+        return firstName + " " + lastName;
+    }
+
     // setters
     public void setFirstName(String firstName)
     {
@@ -83,6 +97,47 @@ public abstract class Person
     public void setEmail(String email) {
         this.email = email;
     }
-    
+    public void setStatus(String status){this.status = status;}
+    public void setFullName(String name){
+        int i = name.lastIndexOf(' ');
+
+        firstName = name.substring(0, i);
+        lastName = name.substring(i + 1);
+    }
+
+    public boolean isHideFriends() {
+        return hideFriends;
+    }
+
+    public void setHideFriends(boolean hideFriends) {
+        this.hideFriends = hideFriends;
+    }
+
+    public boolean isHidePosts() {
+        return hidePosts;
+    }
+
+    public void setHidePosts(boolean hidePosts) {
+        this.hidePosts = hidePosts;
+    }
+
+    public boolean isHideAge() {
+        return hideAge;
+    }
+
+    public void setHideAge(boolean hideAge) {
+        this.hideAge = hideAge;
+    }
+
+    public boolean isHideStatus() {
+        return hideStatus;
+    }
+
+    public void setHideStatus(boolean hideStatus) {
+        this.hideStatus = hideStatus;
+    }
+
+
+
 }
 

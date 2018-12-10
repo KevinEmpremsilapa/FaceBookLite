@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -104,7 +110,7 @@
 
                 -->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@UserInterface.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FriendProfileViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@UserInterface.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FriendProfileViewController">
    <children>
       <AnchorPane>
          <children>
@@ -129,12 +135,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="230.0">
                <children>
-                  <Text layoutX="14.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12/4/18" />
-                  <Text layoutX="73.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Everything is awesome!" wrappingWidth="145.21875" />
-                  <Text layoutX="14.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12/1/18" />
-                  <Text layoutX="73.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today was a good day!" wrappingWidth="146.21875" />
-                  <Text layoutX="14.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="11/22/18" />
-                  <Text layoutX="73.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gobble, gobble!" wrappingWidth="146.21875" />
+                  <ListView id="postsFriendList" fx:id="postsFriendListView" layoutX="8.0" layoutY="8.0" prefHeight="200.0" prefWidth="200.0" />
                </children></AnchorPane>
 
         </content>

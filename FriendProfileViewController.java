@@ -1,3 +1,5 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -5,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 
 import javafx.scene.image.ImageView;
@@ -43,6 +47,10 @@ public class FriendProfileViewController {
 
     @FXML
     private Button friendIconCircle;
+    @FXML
+    private ListView postsFriendListView;
+
+    ObservableList<Post> posts = FXCollections.observableArrayList();
 
     @FXML
     void backToMyProfileButtonPressed(ActionEvent event) throws IOException {
@@ -53,6 +61,31 @@ public class FriendProfileViewController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void initialize()
+    {
+        firstNameFriendLabel.setText(FacebookLite.friendProfile.getFirstName());
+        lastNameFriendLabel.setText(FacebookLite.friendProfile.getLastName());
+        ageFriendLabel.setText(String.valueOf(FacebookLite.friendProfile.getAge()));
+
+        posts = DBUtil.printAllPosts(FacebookLite.friendProfile);
+        postsFriendListView.setItems(posts);
+        postsFriendListView.setCellFactory(param -> new ListCell<Post>(){
+            @Override
+            protected void updateItem(Post post, boolean empty)
+            {
+                super.updateItem(post, empty);
+
+                if(empty || post == null)
+                {
+                    setText(null);
+                }
+                else {
+                    setText(post.toString());
+                }
+            }
+        });
     }
 
 
