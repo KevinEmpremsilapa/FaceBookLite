@@ -112,24 +112,25 @@
          <children>
             <Pane id="dashboardSidebarPanel" layoutX="-4.0" prefHeight="401.0" prefWidth="204.0" style="-fx-background-color: #3b5998;" stylesheets="@UserInterface.css">
                <children>
-                  <Text fill="WHITE" layoutX="57.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
+                  <Text fill="WHITE" layoutX="64.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard" textAlignment="CENTER">
                      <font>
                         <Font name="Helvetica Neue Bold" size="16.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="82.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Online" />
+                  <Text fill="WHITE" layoutX="82.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Online" textAlignment="CENTER" />
                   <!--<Avatar id="userAvatar" layoutX="69.0" layoutY="39.0" radius="30.0" stylesheets="@UserInterface.css" /> -->
                   <Button fx:id="settingsButton" layoutX="41.0" layoutY="344.0" mnemonicParsing="false" onAction="#settingsButtonPressed" style="-fx-background-color: #ffff; -fx-text-fill: #3b5998;" styleClass="whiteButton" stylesheets="@UserInterface.css" text="Settings" />
                   <Text layoutX="87.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " />
-                  <Label fx:id="firstNameLabel" layoutX="65.0" layoutY="135.0" styleClass="smallWhiteFont" stylesheets="@UserInterface.css" text="First Name" />
-                  <Label fx:id="lastNameLabel" layoutX="65.0" layoutY="153.0" styleClass="smallWhiteFont" stylesheets="@UserInterface.css" text="Last Name" />
-                  <Label fx:id="ageLabel" layoutX="88.0" layoutY="172.0" styleClass="smallWhiteFont" stylesheets="@UserInterface.css" text="Age" />
+                  <Label fx:id="firstNameLabel" layoutX="35.0" layoutY="135.0" styleClass="smallWhiteFont" stylesheets="@UserInterface.css" text="First Name" textAlignment="CENTER" />
+                  <Label fx:id="lastNameLabel" layoutX="35.0" layoutY="155.0" styleClass="smallWhiteFont" stylesheets="@UserInterface.css" text="Last Name" textAlignment="CENTER" />
+                  <Label fx:id="ageLabel" layoutX="67.0" layoutY="175.0" styleClass="smallWhiteFont" stylesheets="@UserInterface.css" text="Age" textAlignment="CENTER" />
                   <Button fx:id="logoutButton" layoutX="111.0" layoutY="344.0" mnemonicParsing="false" onAction="#logoutButtonPressed" styleClass="whiteButton" stylesheets="@UserInterface.css" text="Logout" />
                   <ImageView fx:id="userImg" fitHeight="68.0" fitWidth="68.0" layoutX="68.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/defaultUserIcon.png" />
                      </image>
                   </ImageView>
+                  <Label layoutX="35.0" layoutY="175.0" styleClass="smallWhiteFont" stylesheets="@UserInterface.css" text="Age:" />
                </children>
             </Pane>
          </children>
@@ -138,7 +139,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="115.0" prefWidth="230.0" stylesheets="@UserInterface.css">
                <children>
-                  <ListView id="friendsList" fx:id="friendsListView" editable="true" fixedCellSize="1.0" layoutY="1.0" prefHeight="115.0" prefWidth="230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView id="friendsList" fx:id="friendsListView" prefHeight="115.0" prefWidth="230.0" />
                </children></AnchorPane>
         </content>
          <padding>
@@ -159,9 +160,10 @@
       </ScrollPane>
       <Label layoutX="283.0" layoutY="19.0" styleClass="boldDarkFont" stylesheets="@UserInterface.css" text="Friends" />
       <Label layoutX="283.0" layoutY="213.0" styleClass="boldDarkFont" stylesheets="@UserInterface.css" text="Posts" />
-      <Button fx:id="editFriendsButton" layoutX="499.0" layoutY="156.0" mnemonicParsing="false" onAction="#editFriendsButtonPressed" styleClass="darkBlueButton" stylesheets="@UserInterface.css" text="Add" />
-      <Button fx:id="addPost" layoutX="499.0" layoutY="352.0" mnemonicParsing="false" onAction="#addPostButtonPressed" styleClass="darkBlueButton" stylesheets="@UserInterface.css" text="Add" />
-      <Button fx:id="friendsDeleteButton" layoutX="433.0" layoutY="156.0" mnemonicParsing="false" onAction="#deleteFriendsButtonPressed" prefHeight="31.0" prefWidth="63.0" styleClass="bigDarkBlueButton" stylesheets="@UserInterface.css" text="Delete" />
-      <Button fx:id="postsDeleteButton" layoutX="435.0" layoutY="350.0" mnemonicParsing="false" onAction="#deletePostButtonPressed" styleClass="bigDarkBlueButton" stylesheets="@UserInterface.css" text="Delete" />
+      <Button fx:id="editFriendsButton" layoutX="478.0" layoutY="156.0" mnemonicParsing="false" onAction="#editFriendsButtonPressed" styleClass="darkBlueButton" stylesheets="@UserInterface.css" text="Add" />
+      <Button fx:id="addPost" layoutX="478.0" layoutY="350.0" mnemonicParsing="false" onAction="#addPostButtonPressed" styleClass="darkBlueButton" stylesheets="@UserInterface.css" text="Add" />
+      <Button fx:id="friendsDeleteButton" layoutX="433.0" layoutY="156.0" mnemonicParsing="false" onAction="#deleteFriendsButtonPressed" styleClass="darkBlueButton" stylesheets="@UserInterface.css" text="Delete" />
+      <Button fx:id="postsDeleteButton" layoutX="433.0" layoutY="350.0" mnemonicParsing="false" onAction="#deletePostButtonPressed" styleClass="darkBlueButton" stylesheets="@UserInterface.css" text="Delete" />
+      <Button fx:id="friendsViewButton" layoutX="396.0" layoutY="156.0" mnemonicParsing="false" onAction="#friendsViewButtonPressed" styleClass="darkBlueButton" stylesheets="@UserInterface.css" text="View" />
    </children>
 </AnchorPane>
