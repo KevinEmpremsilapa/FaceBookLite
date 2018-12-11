@@ -29,6 +29,10 @@ public class FriendProfileViewController {
 
     @FXML
     private Label lastNameFriendLabel;
+    @FXML
+    private Label postHiddenLabel;
+    @FXML
+    private Label friendsHiddenLabel;
 
     @FXML
     private Text statusFriendLabel;
@@ -49,6 +53,8 @@ public class FriendProfileViewController {
     private Button friendIconCircle;
     @FXML
     private ListView postsFriendListView;
+    @FXML
+    private ListView friendFriendsListView;
 
     ObservableList<Post> posts = FXCollections.observableArrayList();
 

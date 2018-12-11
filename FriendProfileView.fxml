@@ -127,11 +127,11 @@
             </Pane>
          </children>
       </AnchorPane>
-      <ScrollPane layoutX="263.0" layoutY="53.0" prefHeight="248.0" prefWidth="250.0">
+      <ScrollPane layoutX="263.0" layoutY="228.0" prefHeight="138.0" prefWidth="250.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="230.0">
                <children>
-                  <ListView id="postsFriendList" fx:id="postsFriendListView" layoutX="8.0" layoutY="8.0" prefHeight="264.0" prefWidth="230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView id="postsFriendList" fx:id="postsFriendListView" layoutX="-3.0" prefHeight="264.0" prefWidth="240.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
 
         </content>
@@ -139,6 +139,21 @@
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </padding>
       </ScrollPane>
-      <Label layoutX="263.0" layoutY="33.0" styleClass="boldDarkFont" stylesheets="@UserInterface.css" text="Posts" />
+      <ScrollPane layoutX="263.0" layoutY="53.0" prefHeight="138.0" prefWidth="250.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="230.0">
+               <children>
+                  <ListView id="postsFriendList" fx:id="friendFriendsListView" prefHeight="264.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-11.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </content>
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
+      </ScrollPane>
+      <Label layoutX="263.0" layoutY="208.0" styleClass="boldDarkFont" stylesheets="@UserInterface.css" text="Posts" />
+      <Label layoutX="263.0" layoutY="36.0" styleClass="boldDarkFont" stylesheets="@UserInterface.css" text="Friends" />
+      <Label fx:id="friendsHiddenLabel" layoutX="313.0" layoutY="35.0" styleClass="boldDarkFont" stylesheets="@UserInterface.css" text="(hidden)" />
+      <Label fx:id="postHiddenLabel" layoutX="299.0" layoutY="207.0" styleClass="boldDarkFont" stylesheets="@UserInterface.css" text="(hidden)" />
    </children>
 </AnchorPane>
