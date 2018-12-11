@@ -1,4 +1,9 @@
 import java.io.IOException;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +27,8 @@ public class addFriendsController {
 
     @FXML
     private TextField searchBarTextField;
+
+    ObservableList<Person> users = FXCollections.observableArrayList();
 
     @FXML
     void backButtonPressed(ActionEvent event) throws IOException {
@@ -61,7 +68,8 @@ public class addFriendsController {
 
     public void initialize()
     {
-        addFriendsListView.setItems(DBUtil.printAllUsers(FacebookLite.currentUser));
+        users = DBUtil.printAllUsers(FacebookLite.currentUser);
+        addFriendsListView.setItems(users);
         addFriendsListView.setCellFactory(param -> new ListCell<Person>(){
             @Override
             protected void updateItem(Person person, boolean empty)
@@ -74,9 +82,33 @@ public class addFriendsController {
                 }
                 else {
                     setText(person.getFullName());
-                    //setGraphic(profilePic);
                 }
             }
         });
+
+        FilteredList<Person> filteredData = new FilteredList<>(users ,p -> true);
+
+        //Filter
+        searchBarTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(person ->{
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(person.getFirstName().toLowerCase().contains(lowerCaseFilter)){
+                    return true;
+                }else if(person.getLastName().toLowerCase().contains(lowerCaseFilter)){
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        SortedList<Person> sortedData = new SortedList<>(filteredData);
+
+        addFriendsListView.setItems(sortedData);
     }
+
 }

@@ -1,3 +1,6 @@
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public abstract class Person
 {
     private String firstName;
@@ -11,12 +14,14 @@ public abstract class Person
     private boolean hidePosts;
     private boolean hideAge;
     private boolean hideStatus;
+    private ImageView picture;
     
     public Person()
     {
         firstName = "";
         lastName = "";
         age = 0;
+        picture = new ImageView("Images/defaultUserIcon.png");
     }
     
     public Person(String firstName , String lastName , int age)
@@ -71,6 +76,8 @@ public abstract class Person
     {
         return firstName + " " + lastName;
     }
+
+    public ImageView getPicture(){return picture;}
 
     // setters
     public void setFirstName(String firstName)
@@ -137,7 +144,11 @@ public abstract class Person
         this.hideStatus = hideStatus;
     }
 
-
+    public void setPicture(ImageView picture){
+        this.picture = picture;
+        picture.setFitWidth(35);
+        picture.setFitHeight(35);
+    }
 
 }
 

@@ -3,6 +3,7 @@ import com.mongodb.client.MongoCollection;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.ImageView;
 import org.bson.types.ObjectId;
 
 import java.text.SimpleDateFormat;
@@ -127,6 +128,7 @@ public class DBUtil
             person.setAge(Integer.parseInt(db.get("age").toString()));
             person.setUsername(db.get("username").toString());
             person.setStatus(db.get("status").toString());
+            person.setPicture(new ImageView("Images/defaultUserIcon.png"));
 
             DBObject db2 = (DBObject) db.get("hidden");
             person.setHideAge(Boolean.valueOf(db2.get("hideAge").toString()));

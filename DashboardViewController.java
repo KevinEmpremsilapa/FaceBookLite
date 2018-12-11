@@ -71,23 +71,20 @@ public class DashboardViewController {
         friends = DBUtil.printAllFriends(FacebookLite.currentUser);
         friendsListView.setItems(friends);
         friendsListView.setCellFactory(param -> new ListCell<Person>(){
-            private ImageView profilePic = new ImageView();
            @Override
            protected void updateItem(Person person, boolean empty)
            {
-               profilePic = userIconImg;
-               profilePic.setFitHeight(35);
-               profilePic.setFitWidth(35);
 
                super.updateItem(person, empty);
 
                if(empty || person == null)
                {
                    setText(null);
+                   setGraphic(null);
                }
                else {
                    setText(person.getFullName());
-                   setGraphic(profilePic);
+                   setGraphic(person.getPicture());
                }
            }
         });

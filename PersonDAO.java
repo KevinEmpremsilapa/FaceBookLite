@@ -1,3 +1,5 @@
+import javafx.scene.image.ImageView;
+
 public class PersonDAO extends Person implements DAO
 {
     private String firstName;
@@ -10,6 +12,8 @@ public class PersonDAO extends Person implements DAO
     private boolean hidePosts;
     private boolean hideAge;
     private boolean hideStatus;
+
+    private ImageView picture;
 
     public PersonDAO()
     {
@@ -54,6 +58,9 @@ public class PersonDAO extends Person implements DAO
         return email;
     }
     public String getFullName(){return firstName + " " + lastName;}
+    public ImageView getPicture() {
+        return picture;
+    }
 
     // setters
     public void setFirstName(String firstName)
@@ -116,6 +123,11 @@ public class PersonDAO extends Person implements DAO
 
     public void setHideStatus(boolean hideStatus) {
         this.hideStatus = hideStatus;
+    }
+    public void setPicture(ImageView picture) {
+        this.picture = picture;
+        picture.setFitWidth(35);
+        picture.setFitHeight(35);
     }
 
     //===DAO======
