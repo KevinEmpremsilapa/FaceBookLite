@@ -47,14 +47,17 @@ public class FacebookLiteController {
     @FXML
     void loginButtonPressed(ActionEvent event) throws IOException {
 
+        System.out.println("Login Button Pressed");
+
         if (!usernameTextField.getText().equals("") || !passwordField.getText().equals("")) {
 
-            Person user = DBUtil.loginUser(usernameTextField.getText(), passwordField.getText());
+            //Person user = DBUtil.loginUser(usernameTextField.getText(), passwordField.getText());
+            Person user = new PersonDAO().login(usernameTextField.getText(), passwordField.getText());
 
             if (user != null) {
                 //Login successful
                 FacebookLite.currentUser = user;
-                System.out.println("Login Successful " + user);
+                System.out.println("Login Successful" );
 
                 Stage stage;
                 Parent root;
@@ -68,13 +71,10 @@ public class FacebookLiteController {
             //TODO: Set Visible to true if user enters wrong username/password
             //
             else {
-                //loginErrorlabel.setVisible(true);
+                loginErrorLabel.setVisible(true);
                 System.out.println("Login failed");
             }
         }
-        //System.out.println(username);
-        //System.out.println(password);
-        System.out.print("Login Button Pressed\n");
     }
 
     @FXML
@@ -88,5 +88,10 @@ public class FacebookLiteController {
         stage.show();
         System.out.print("Reset Password Button Pressed\n");
 
+    }
+
+    public void initialize()
+    {
+        loginErrorLabel.setVisible(false);
     }
 }

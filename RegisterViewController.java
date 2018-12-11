@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -26,7 +27,8 @@ public class RegisterViewController {
     @FXML
     private TextField ageInput;
 
-
+    @FXML
+    private Label usernameErrorLabel;
     @FXML
     private Button submitButton;
     // ADDED
@@ -48,22 +50,18 @@ public class RegisterViewController {
             person.setLastName(lastName.getText());
             person.setAge(Integer.parseInt(ageInput.getText()));
             person.setUsername(userName.getText());
-            //Encrypt here
-            //Encryption.encrypt(passwordInput.getText());
-            //Encryption encryption = new Encryption();
-            //person.setPassword(encryption.encrypt(passwordInput.getText()));
             AES.encrypt(passwordInput.getText(), userName.getText());
             person.setPassword(new Password(AES.encrypt(passwordInput.getText(), userName.getText()), userName.getText()));
-            //Need email
             person.setEmail("@");
 
-            DBUtil.registerUser(person);
+            //DBUtil.registerUser(person);
+            ((PersonDAO) person).registerPerson(person);
             FacebookLite.currentUser = person;
 
-            System.out.println("First Name: " + firstNameInput);
-            System.out.println("Last Name: " + lastNameInput);
-            System.out.println("Password: " + passwordUserInput);
-            System.out.println("Age: " + ageUserInput);
+            System.out.println("First Name: " + person.getFirstName());
+            System.out.println("Last Name: " + person.getLastName());
+            System.out.println("Password: " + person.getPassword());
+            System.out.println("Age: " + person.getAge());
 
             Stage stage;
             Parent root;
@@ -73,8 +71,11 @@ public class RegisterViewController {
             stage.setScene(scene);
             stage.show();
         }
-        else
+        else {
             System.out.println("Username already exists");
+            usernameErrorLabel.setVisible(true);
+        }
+
         System.out.println("Submit Button Pressed\n");
     }
 
@@ -90,4 +91,8 @@ public class RegisterViewController {
         System.out.println("Back Button Pressed\n");
     }
 
+    public void initialize()
+    {
+        usernameErrorLabel.setVisible(false);
+    }
 }

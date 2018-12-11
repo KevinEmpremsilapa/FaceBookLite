@@ -116,19 +116,23 @@ public class SettingsViewController {
     @FXML
     void saveButtonPressed(ActionEvent event) throws IOException {
 
+        PersonDAO personDAO = new PersonDAO();
         //TODO: Save values to database
         //Age
         FacebookLite.currentUser.setAge(Integer.parseInt(ageTextField.getText()));
-        DBUtil.updateField(FacebookLite.currentUser, "age", ageTextField.getText());
+        //DBUtil.updateField(FacebookLite.currentUser, "age", ageTextField.getText());
+        personDAO.updateField(FacebookLite.currentUser, "age", ageTextField.getText());
         //Status
         FacebookLite.currentUser.setStatus(statusTextField.getText());
-        DBUtil.updateField(FacebookLite.currentUser, "status", statusTextField.getText());
+        //DBUtil.updateField(FacebookLite.currentUser, "status", statusTextField.getText());
+        personDAO.updateField(FacebookLite.currentUser, "status", statusTextField.getText());
         //Hide stuff
         FacebookLite.currentUser.setHideAge(ageCheckBox.isSelected());
         FacebookLite.currentUser.setHideFriends(friendsCheckBox.isSelected());
         FacebookLite.currentUser.setHidePosts(postsCheckBox.isSelected());
         FacebookLite.currentUser.setHideStatus(statusCheckBox.isSelected());
-        DBUtil.updateField(FacebookLite.currentUser,"hidden", "hideAge", String.valueOf(hideAge));
+        //DBUtil.updateField(FacebookLite.currentUser,"hidden", "hideAge", String.valueOf(hideAge));
+        personDAO.updateField(FacebookLite.currentUser,"hidden", "hideAge", String.valueOf(hideAge));
         //DBUtil.updateField(FacebookLite.currentUser,"hidden", "hideStatus", String.valueOf(hideStatus));
         //DBUtil.updateField(FacebookLite.currentUser,"hidden","hidePosts", String.valueOf(hidePosts));
         //DBUtil.updateField(FacebookLite.currentUser,"hidden","hideFriends", String.valueOf(hideFriends));

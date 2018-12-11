@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 
@@ -26,6 +27,10 @@ public class ResetPasswordController {
     private PasswordField newPasswordField;
     @FXML
     private PasswordField confirmPasswordField;
+    @FXML
+    private Label passwordErrorLabel;
+    @FXML
+    private Label usernameErrorLabel;
 
 
     @FXML
@@ -42,12 +47,15 @@ public class ResetPasswordController {
     }
     @FXML
     private void resetPasswordButtonPressed(ActionEvent event) throws IOException{
-        //TODO: Save the new password to database
+        PersonDAO personDAO = new PersonDAO();
 
+        usernameErrorLabel.setVisible(false);
+        passwordErrorLabel.setVisible(false);
         if(newPasswordField.getText().equals(confirmPasswordField.getText()))
         {
-            if(DBUtil.searchField("Users","email", emailTextField.getText())) {
-                DBUtil.updatePassword(emailTextField.getText(), newPasswordField.getText());
+            if(DBUtil.searchField("Users","username", emailTextField.getText())) {
+                //DBUtil.updatePassword(emailTextField.getText(), AES.encrypt(newPasswordField.getText(),emailTextField.getText()));
+                personDAO.updatePassword(emailTextField.getText(), AES.encrypt(newPasswordField.getText(), emailTextField.getText()));
 
                 Stage stage;
 
@@ -59,16 +67,22 @@ public class ResetPasswordController {
                 stage.show();
                 System.out.println("Reset Button Pressed\n");
             }
-            else
-                System.out.println("No email found");
+            else {
+                System.out.println("No username found");
+                usernameErrorLabel.setVisible(true);
+            }
         }
 
-        else
+        else {
             System.out.println("Passwords don't match");
-
-
+            passwordErrorLabel.setVisible(true);
+        }
     }
 
-
+    public void initialize()
+    {
+        usernameErrorLabel.setVisible(false);
+        passwordErrorLabel.setVisible(false);
+    }
 
 }

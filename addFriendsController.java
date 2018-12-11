@@ -37,21 +37,26 @@ public class addFriendsController {
 
     @FXML
     void addFriendsButtonPressed(ActionEvent event) throws IOException {
+        System.out.println("Add Friends Button Pressed");
 
         //TODO: Save friend to database
         Person selected = new PersonDAO();
+        PersonDAO person = new PersonDAO();
         selected = (Person) addFriendsListView.getSelectionModel().getSelectedItem();
-        DBUtil.addFriend(FacebookLite.currentUser, selected);
+        if(selected != null) {
+            person.addFriend(FacebookLite.currentUser, selected);
 
 
-        Stage stage;
-        Parent root;
-        stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("DashboardView.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Add Friends Button Pressed");
+            Stage stage;
+            Parent root;
+            stage = (Stage) ((Button) (event.getSource())).getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("DashboardView.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else
+            System.out.println("No friend selected");
     }
 
     public void initialize()

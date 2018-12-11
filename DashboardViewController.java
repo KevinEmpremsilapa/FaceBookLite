@@ -117,15 +117,18 @@ public class DashboardViewController {
     void friendsViewButtonPressed(ActionEvent event) throws IOException {
 
         FacebookLite.friendProfile = (Person) friendsListView.getSelectionModel().getSelectedItem();
+        if(FacebookLite.friendProfile != null) {
+            Stage stage;
+            Parent root;
+            stage = (Stage) ((Button) (event.getSource())).getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("FriendProfileView.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
 
-
-        Stage stage;
-        Parent root;
-        stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();
-        root = FXMLLoader.load(getClass().getResource("FriendProfileView.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        else
+            System.out.println("No friend selected");
     }
 
     @FXML
@@ -180,11 +183,17 @@ public class DashboardViewController {
 
     @FXML
     void deleteFriendsButtonPressed(ActionEvent event) throws IOException {
+        System.out.println("Delete Friends Button Pressed");
 
         Person person = new PersonDAO();
+        PersonDAO personDAO = new PersonDAO();
         person = (Person) friendsListView.getSelectionModel().getSelectedItem();
-        DBUtil.deleteFriend(FacebookLite.currentUser, person);
-        friendsListView.getItems().remove(person);
+        if(person !=null) {
+            personDAO.deleteFriend(FacebookLite.currentUser, person);
+            friendsListView.getItems().remove(person);
+        }
+        else
+            System.out.println("No friend selected");
     }
 
     @FXML
@@ -199,21 +208,28 @@ public class DashboardViewController {
         stage.show();
 
         System.out.println("Add Post");
-
     }
 
     @FXML
     void deletePostButtonPressed(ActionEvent event) throws IOException{
 
+        PersonDAO personDAO = new PersonDAO();
         Post post = new Post();
         post = (Post) postsListView.getSelectionModel().getSelectedItem();
-        DBUtil.deletePost(FacebookLite.currentUser, post);
-        postsListView.getItems().remove(post);
-        System.out.println("Delete Post");
+
+        if(post != null) {
+            personDAO.deletePost(FacebookLite.currentUser, post);
+            postsListView.getItems().remove(post);
+            System.out.println("Delete Post");
+        }
+        else
+            System.out.println("No post selected");
     }
 
     @FXML
     void logoutButtonPressed(ActionEvent event) throws IOException {
+        FacebookLite.currentUser = null;
+
         Stage stage;
         Parent root;
         stage=(Stage) ((Button)(event.getSource())).getScene().getWindow();

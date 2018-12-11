@@ -57,6 +57,7 @@ public class FriendProfileViewController {
     private ListView friendFriendsListView;
 
     ObservableList<Post> posts = FXCollections.observableArrayList();
+    ObservableList<Person> friends = FXCollections.observableArrayList();
 
     @FXML
     void backToMyProfileButtonPressed(ActionEvent event) throws IOException {
@@ -73,27 +74,58 @@ public class FriendProfileViewController {
     {
         firstNameFriendLabel.setText(FacebookLite.friendProfile.getFirstName());
         lastNameFriendLabel.setText(FacebookLite.friendProfile.getLastName());
-        ageFriendLabel.setText(String.valueOf(FacebookLite.friendProfile.getAge()));
 
-        posts = DBUtil.printAllPosts(FacebookLite.friendProfile);
-        postsFriendListView.setItems(posts);
-        postsFriendListView.setCellFactory(param -> new ListCell<Post>(){
-            @Override
-            protected void updateItem(Post post, boolean empty)
-            {
-                super.updateItem(post, empty);
+        if(FacebookLite.friendProfile.isHideAge())
+            ageFriendLabel.setText("hidden");
+        else
+            ageFriendLabel.setText(String.valueOf(FacebookLite.friendProfile.getAge()));
 
-                if(empty || post == null)
-                {
-                    setText(null);
+        if(FacebookLite.friendProfile.isHideStatus())
+            statusFriendLabel.setText("hidden");
+        else
+            statusFriendLabel.setText(String.valueOf(FacebookLite.friendProfile.getStatus()));
+
+        if(!FacebookLite.friendProfile.isHideFriends()) {
+            friends = DBUtil.printAllFriends(FacebookLite.friendProfile);
+            friendFriendsListView.setItems(friends);
+            friendFriendsListView.setCellFactory(param -> new ListCell<Person>() {
+                @Override
+                protected void updateItem(Person person, boolean empty) {
+                    super.updateItem(person, empty);
+
+                    if (empty || person == null) {
+                        setText(null);
+                    } else {
+                        setText(person.getFullName());
+                    }
                 }
-                else {
-                    setText(post.toString());
+            });
+            friendsHiddenLabel.setVisible(false);
+        }
+        else
+            friendsHiddenLabel.setVisible(true);
+
+        if(!FacebookLite.friendProfile.isHidePosts()) {
+            posts = DBUtil.printAllPosts(FacebookLite.friendProfile);
+            postsFriendListView.setItems(posts);
+            postsFriendListView.setCellFactory(param -> new ListCell<Post>() {
+                @Override
+                protected void updateItem(Post post, boolean empty) {
+                    super.updateItem(post, empty);
+
+                    if (empty || post == null) {
+                        setText(null);
+                    } else {
+                        setText(post.toString());
+                    }
                 }
-            }
-        });
+            });
+            postHiddenLabel.setVisible(false);
+        }
+        else
+            postHiddenLabel.setVisible(true);
+
+
+
     }
-
-
-
 }

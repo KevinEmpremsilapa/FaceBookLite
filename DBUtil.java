@@ -23,36 +23,6 @@ public class DBUtil
         database = mongoClient.getDB("Main");
     }
 
-    /*public static void main (String[] args) {
-
-        //startDatabase();
-        //Person person = new PersonDAO("Abby", "James",13, "abc", "xyz", "h@g.com");
-        //newRegister(person);
-        //System.out.println(loginUser("abc", "xyz"));
-        //updatePassword("xyz", "abc");
-
-        //Change "testColle" to anything if you want
-        DBCollection coll = db2.getCollection("testColle");
-        BasicDBObject doc = new BasicDBObject("name", "MongoDB")
-                .append("type", "database")
-                .append("count", 1)
-                .append("info", new BasicDBObject("x", 203).append("y", 102));
-        coll.insert(doc);
-
-        //This will show all the names of the databases, you should see the database you added from the TODO line
-        mongoClient.getDatabaseNames().forEach(System.out::println);
-        //DBCollection db = db2.getCollection("Users");
-
-        //FINDER
-        BasicDBObject searchQuery = new BasicDBObject();
-        searchQuery.put("firstName", "Garcia");
-        DBCursor cursor = db.find(searchQuery);
-        while(cursor.hasNext())
-        {
-            System.out.println("----" + cursor.next());
-        }
-    }*/
-
     public static String registerUser(Person person)
     {
         collection = database.getCollection("Users");
@@ -86,13 +56,10 @@ public class DBUtil
         if(cursor.hasNext()) {
             DBObject db = cursor.next();
             DBObject db2 = (DBObject) db.get("password");
-            System.out.println("password " + db.get("password"));
-            System.out.println("input: " + db2.get("enc") + " hidden: " +  db2.get("key"));
 
             if(AES.decrypt(db2.get("enc").toString(), db2.get("key").toString()).equals(password))
             {
                 ObjectId id = (ObjectId) db.get("_id");
-                System.out.println("Login Success");
                 return profileInfo(id);
             }
             else
@@ -126,7 +93,7 @@ public class DBUtil
         DBCursor cursor = collection.find(searchQuery);
         if(cursor.hasNext()) {
             DBObject db = cursor.next();
-            ObjectId id = (ObjectId) db.get("_id");
+
             person.setFirstName(db.get("firstName").toString());
             person.setLastName(db.get("lastName").toString());
             person.setAge(Integer.parseInt(db.get("age").toString()));
@@ -157,25 +124,27 @@ public class DBUtil
             ObjectId id = (ObjectId) db.get("_id");
             person.setFirstName(db.get("firstName").toString());
             person.setLastName(db.get("lastName").toString());
-            //Hide age
             person.setAge(Integer.parseInt(db.get("age").toString()));
             person.setUsername(db.get("username").toString());
-            //Status
-            //
+            person.setStatus(db.get("status").toString());
 
-            System.out.println("Login   " + id);
+            DBObject db2 = (DBObject) db.get("hidden");
+            person.setHideAge(Boolean.valueOf(db2.get("hideAge").toString()));
+            person.setHidePosts(Boolean.valueOf(db2.get("hidePosts").toString()));
+            person.setHideFriends(Boolean.valueOf(db2.get("hideFriends").toString()));
+            person.setHideStatus(Boolean.valueOf(db2.get("hideStatus").toString()));
         }
         return person;
     }
 
-    public static void updatePassword(String email, String newPassword)
+    public static void updatePassword(String user, String newPassword)
     {
         collection = database.getCollection("Users");
         BasicDBObject newDocument = new BasicDBObject();
         newDocument.append("$set", new BasicDBObject().append("password", new BasicDBObject()
-                .append("enc", newPassword).append("key", email)));
+                .append("enc", newPassword).append("key", user)));
 
-        BasicDBObject searchQuery = new BasicDBObject().append("email", email);
+        BasicDBObject searchQuery = new BasicDBObject().append("username", user);
 
         collection.update(searchQuery, newDocument);
     }
@@ -196,7 +165,6 @@ public class DBUtil
             Person friend = new PersonDAO();
             friend = printFriendInfo(db.get("friend").toString());
             friends.add(friend);
-            System.out.println("In DB 2");
         }
 
         collection = database.getCollection("Friendship");
@@ -206,7 +174,6 @@ public class DBUtil
         DBCursor cursor2 = collection.find(searchFriends);
         while(cursor2.hasNext()) {
             DBObject db = cursor2.next();
-            System.out.println("In 1 " );
             Person friend = new PersonDAO();
             friend = printFriendInfo(db.get("user").toString());
             friends.add(friend);

@@ -1,4 +1,4 @@
-public class PersonDAO extends Person
+public class PersonDAO extends Person implements DAO
 {
     private String firstName;
     private String lastName;
@@ -25,6 +25,7 @@ public class PersonDAO extends Person
     {
         super(firstName, lastName, age, username, password, email);
     }
+
 
     // getters
     public String getFirstName()
@@ -116,5 +117,53 @@ public class PersonDAO extends Person
     public void setHideStatus(boolean hideStatus) {
         this.hideStatus = hideStatus;
     }
+
+    //===DAO======
+
+    public <T> void update(T t, String[] params) {};
+    public <T> void delete(T t) {};
+    public void registerPerson(Person person)
+    {
+        DBUtil.registerUser(person);
+    }
+    public Person login(String username, String password)
+    {
+        return DBUtil.loginUser(username,password);
+    }
+    public void addFriend(Person user, Person friend)
+    {
+        DBUtil.addFriend(user, friend);
+    }
+    public void updatePassword(String email, String newPassword)
+    {
+        DBUtil.updatePassword(email, newPassword);
+    }
+    public void addPost(Person user, Post post)
+    {
+        DBUtil.addPost(user,post);
+    }
+    public void deletePost(Person user, Post post)
+    {
+        DBUtil.deletePost(user,post);
+    }
+    public void updateField(Person user, String field, String updateInfo)
+    {
+        DBUtil.updateField(user,field,updateInfo);
+    }
+    public void updateField(Person user, String field, String innerField, String updateInfo)
+    {
+        DBUtil.updateField(user,field,innerField, updateInfo);
+    }
+    public void searchField(String coll, String field, String find)
+    {
+        DBUtil.searchField(coll,field,find);
+    }
+
+
+    public void deleteFriend(Person user, Person friend)
+    {
+        DBUtil.deleteFriend(user,friend);
+    }
+
 
 }
