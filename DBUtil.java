@@ -42,7 +42,7 @@ public class DBUtil
                 .append("hideAge", false)
                 .append("hideStatus", false));
         collection.insert(document);
-
+        FacebookLite.currentUser.setStatus("Online");
         return document.get("_id").toString();
     }
 

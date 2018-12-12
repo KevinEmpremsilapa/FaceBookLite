@@ -48,6 +48,8 @@ public class DashboardViewController {
     private Label firstNameLabel;
     @FXML
     private Label lastNameLabel;
+    @FXML
+    private Label statusLabel;
 
     @FXML
     private ListView friendsListView;
@@ -66,7 +68,7 @@ public class DashboardViewController {
         firstNameLabel.setText(FacebookLite.currentUser.getFirstName());
         lastNameLabel.setText(FacebookLite.currentUser.getLastName());
         ageLabel.setText(String.valueOf(FacebookLite.currentUser.getAge()));
-
+        statusLabel.setText(String.valueOf(FacebookLite.currentUser.getStatus()));
 
         friends = DBUtil.printAllFriends(FacebookLite.currentUser);
         friendsListView.setItems(friends);
@@ -74,7 +76,6 @@ public class DashboardViewController {
            @Override
            protected void updateItem(Person person, boolean empty)
            {
-
                super.updateItem(person, empty);
 
                if(empty || person == null)

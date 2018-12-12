@@ -12,7 +12,6 @@ public class PersonDAO extends Person implements DAO
     private boolean hidePosts;
     private boolean hideAge;
     private boolean hideStatus;
-
     private ImageView picture;
 
     public PersonDAO()
